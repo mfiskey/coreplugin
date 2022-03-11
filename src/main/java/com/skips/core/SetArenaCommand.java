@@ -31,7 +31,7 @@ public class SetArenaCommand implements CommandExecutor {
                     if (!(args[0].equalsIgnoreCase("set")) && !(args[0].equalsIgnoreCase("delete"))) {
                         player.sendMessage(ChatColor.RED + "You must specify an action: /arena <set/delete/move> <name>");
                     }
-                    String arenaName = args[1].substring(0, 1).toUpperCase() + args[1].substring(1);
+                    String arenaName = args[1].substring(0, 1).toUpperCase() + args[1].substring(1).toLowerCase();
                     if (args[0].equalsIgnoreCase("set")) {
                         player.sendMessage(ChatColor.WHITE + "The arena " + ChatColor.GOLD + arenaName + ChatColor.WHITE + " has been set.");
                         //TODO: set logic here.
