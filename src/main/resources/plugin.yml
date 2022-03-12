@@ -1,8 +1,8 @@
 name: Core
 version: '${project.version}'
-main: com.skips.core.Main
+main: com.skips.core.main.Main
 api-version: 1.18
-authors: [ Skips ]
+authors: [ Skips, Sebastian ]
 description: Core plugin for the server.
 depend: [WorldEdit]
 commands:

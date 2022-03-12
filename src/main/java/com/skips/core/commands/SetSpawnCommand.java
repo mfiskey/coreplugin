@@ -1,4 +1,4 @@
-package com.skips.core;
+package com.skips.core.commands;
 
 public class SetSpawnCommand {
 }

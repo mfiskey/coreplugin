@@ -1,4 +1,4 @@
-package com.skips.core;
+package com.skips.core.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

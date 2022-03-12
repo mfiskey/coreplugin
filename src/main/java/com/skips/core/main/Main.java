@@ -1,7 +1,7 @@
-package com.skips.core;
+package com.skips.core.main;
 
+import com.skips.core.commands.SetArenaCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
