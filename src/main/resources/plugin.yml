@@ -7,3 +7,4 @@ description: Core plugin for the server.
 depend: [WorldEdit]
 commands:
   arena:
+  setspawn:
