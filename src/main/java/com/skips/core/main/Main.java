@@ -10,7 +10,9 @@ public final class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        System.out.println("******* CORE plugin up and running! *******");
+        System.out.println("&f*********************************************");
+        System.out.println("&f******* &6CORE plugin up and running! &f*******");
+        System.out.println("&f*********************************************");
         Bukkit.getPluginManager().registerEvents(this, this);
         this.getCommand("arena").setExecutor(new SetArenaCommand());
     }
