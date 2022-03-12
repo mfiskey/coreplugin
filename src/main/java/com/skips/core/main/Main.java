@@ -14,9 +14,9 @@ public final class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        this.ccs.sendMessage(ChatColor.GOLD +"*********************************************");
-        this.ccs.sendMessage(ChatColor.GOLD + "******* " + ChatColor.WHITE + "CORE plugin up and running!" + ChatColor.GOLD + " *********");
-        this.ccs.sendMessage(ChatColor.GOLD + "*********************************************");
+        this.ccs.sendMessage(ChatColor.GOLD +"***********************************************");
+        this.ccs.sendMessage(ChatColor.GOLD + "******** " + ChatColor.WHITE + "CORE plugin up and running!" + ChatColor.GOLD + " **********");
+        this.ccs.sendMessage(ChatColor.GOLD + "***********************************************");
         Bukkit.getPluginManager().registerEvents(this, this);
         this.getCommand("arena").setExecutor(new Arena());
     }
