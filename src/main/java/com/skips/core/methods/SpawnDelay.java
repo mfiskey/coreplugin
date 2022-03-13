@@ -17,29 +17,28 @@ public class SpawnDelay {
 
     public static void teleport(Player player) {
         if (!delay.containsKey(player.getUniqueId())) {
-            player.sendMessage("Teleporting you to spawn in 10 seconds...");
-            int i = SpawnDelayData.delay *= 20;
+            player.sendMessage(SpawnDelayData.tpDelayMsg);
             int task = Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), () -> {
                 if (delay.containsKey(player.getUniqueId())) {
                     delay.remove(player.getUniqueId());
                 }
-                if (!Main.getPlugin().getConfig().contains("spawn")) {
+                if (Main.getPlugin().getConfig().getLocation("spawn") == null) {
                     player.sendMessage(ChatColor.RED + "Spawn has not been set! Contact the owner for help.");
                     Main.ccs.sendMessage(ChatColor.RED + player.getName() +
                             " tried executing /spawn, but there is no spawn set!");
                 }
-                else {
+                else{
                     player.teleport(Main.getPlugin().getConfig().getLocation("spawn"));
                 }
 
-            }, (SpawnDelayData.delay * 20));
+            }, (SpawnDelayData.delay * 20L));
 
-            delay.put(player.getUniqueId(), Integer.valueOf(task));
+            delay.put(player.getUniqueId(), task);
         }
     }
     public static void cancelTeleport(Player player) {
         if (delay.containsKey(player.getUniqueId())) {
-            int task = ((Integer)delay.get(player.getUniqueId()).intValue());
+            int task = ((Integer) delay.get(player.getUniqueId()));
             Bukkit.getScheduler().cancelTask(task);
             delay.remove(player.getUniqueId());
             if (Bukkit.getOnlinePlayers().contains(player)) player.sendMessage(SpawnDelayData.tpCancelMsg);

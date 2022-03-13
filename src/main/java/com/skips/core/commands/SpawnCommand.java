@@ -11,12 +11,6 @@ import org.bukkit.entity.Player;
 
 public class SpawnCommand implements CommandExecutor {
 
-    private final Main plugin;
-
-    public SpawnCommand(Main plugin) {
-        this.plugin = plugin;
-    }
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -27,9 +21,8 @@ public class SpawnCommand implements CommandExecutor {
             }
         }
         Player player = (Player) sender;
-        Location location = plugin.getConfig().getLocation("spawn");
 
-        if (location == null) {
+        if (Main.getPlugin().getConfig().getLocation("spawn") == null) {
             player.sendMessage(ChatColor.RED + "There needs to be a spawn point set before using this command. " +
                     "Use /setspawn to do so.");
             return true;

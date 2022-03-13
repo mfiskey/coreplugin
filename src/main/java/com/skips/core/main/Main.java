@@ -14,23 +14,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Main extends JavaPlugin implements Listener {
 
     public static final ConsoleCommandSender ccs = Bukkit.getConsoleSender();
-    public static Main plugin;
+    private static Main plugin;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-
         this.ccs.sendMessage(ChatColor.GOLD +"***********************************************");
         this.ccs.sendMessage(ChatColor.GOLD + "******** " + ChatColor.WHITE + "CORE plugin up and running!" + ChatColor.GOLD + " **********");
         this.ccs.sendMessage(ChatColor.GOLD + "***********************************************");
 
+        plugin = this;
         this.getConfig().options().copyDefaults();
         this.saveDefaultConfig();
-
         this.getCommand("arena").setExecutor(new ArenaCommand());
-        this.getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
-        this.getCommand("spawn").setExecutor(new SpawnCommand(this));
-        this.getServer().getPluginManager().registerEvents(new SpawnListener(this), this);
+        this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
+        this.getCommand("spawn").setExecutor(new SpawnCommand());
+        this.getServer().getPluginManager().registerEvents(new SpawnListener(), this);
 
 
     }

@@ -10,12 +10,6 @@ import org.bukkit.entity.Player;
 
 public class SetSpawnCommand implements CommandExecutor {
 
-    private final Main plugin;
-
-    public SetSpawnCommand(Main plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("setspawn")) {
@@ -28,8 +22,8 @@ public class SetSpawnCommand implements CommandExecutor {
 
         Location location = player.getLocation();
 
-        plugin.getConfig().set("spawn", location);
-        plugin.saveConfig();
+        Main.getPlugin().getConfig().set("spawn", location);
+        Main.getPlugin().saveConfig();
 
         player.sendMessage(ChatColor.WHITE + "Spawn location has been set!");
         return true;
