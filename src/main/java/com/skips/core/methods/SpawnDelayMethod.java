@@ -5,13 +5,15 @@ import com.skips.core.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class SpawnDelay {
+public class SpawnDelayMethod {
 
     public static HashMap<UUID, Integer> delay = new HashMap<>();
+    private static int counter = 10;
 
     public static void teleport(Player player) {
         if (!delay.containsKey(player.getUniqueId())) {
@@ -32,6 +34,7 @@ public class SpawnDelay {
             }, (SpawnDelayData.delay * 20L));
 
             delay.put(player.getUniqueId(), task);
+            counter = 10;
         }
     }
     public static void cancelTeleport(Player player) {

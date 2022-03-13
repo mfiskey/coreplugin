@@ -1,10 +1,13 @@
 package com.skips.core.commands;
 
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 public class ArenaCommand implements CommandExecutor {
     @Override
@@ -48,6 +51,12 @@ public class ArenaCommand implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    public WorldEditPlugin getWorldEdit() {
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+        if (plugin instanceof WorldEditPlugin) return (WorldEditPlugin)plugin;
+        else return null;
     }
 
 }

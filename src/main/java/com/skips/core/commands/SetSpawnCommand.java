@@ -19,7 +19,10 @@ public class SetSpawnCommand implements CommandExecutor {
             }
         }
         Player player = (Player) sender;
-
+        if (!player.isOp()) {
+            sender.sendMessage(ChatColor.RED + "You must have operator to be able to perform this command!");
+            return true;
+        }
         Location location = player.getLocation();
 
         Main.getPlugin().getConfig().set("spawn", location);

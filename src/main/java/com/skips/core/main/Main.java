@@ -1,14 +1,15 @@
 package com.skips.core.main;
-
-import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.skips.core.commands.ArenaCommand;
 import com.skips.core.commands.SetSpawnCommand;
 import com.skips.core.commands.SpawnCommand;
 import com.skips.core.listeners.SpawnListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin implements Listener {
@@ -22,10 +23,11 @@ public final class Main extends JavaPlugin implements Listener {
         this.ccs.sendMessage(ChatColor.GOLD +"***********************************************");
         this.ccs.sendMessage(ChatColor.GOLD + "******** " + ChatColor.WHITE + "CORE plugin up and running!" + ChatColor.GOLD + " **********");
         this.ccs.sendMessage(ChatColor.GOLD + "***********************************************");
-
-        plugin = this;
         this.getConfig().options().copyDefaults();
         this.saveDefaultConfig();
+
+        plugin = this;
+
         this.getCommand("arena").setExecutor(new ArenaCommand());
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
@@ -33,6 +35,7 @@ public final class Main extends JavaPlugin implements Listener {
 
 
     }
+
     public static Main getPlugin() {
         return plugin;
     }

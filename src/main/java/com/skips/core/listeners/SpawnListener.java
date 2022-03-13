@@ -1,8 +1,7 @@
 package com.skips.core.listeners;
 
 import com.skips.core.main.Main;
-import com.skips.core.methods.SpawnDelay;
-import org.bukkit.ChatColor;
+import com.skips.core.methods.SpawnDelayMethod;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,7 +34,7 @@ public class SpawnListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         if (e.getFrom().getZ() != e.getTo().getZ() && e.getFrom().getX() != e.getTo().getX()) {
-            SpawnDelay.cancelTeleport(e.getPlayer());
+            SpawnDelayMethod.cancelTeleport(e.getPlayer());
         }
     }
 }
