@@ -1,6 +1,10 @@
 package com.skips.core.main;
 
-import com.skips.core.commands.Arena;
+import com.sk89q.worldedit.WorldEdit;
+import com.skips.core.commands.ArenaCommand;
+import com.skips.core.commands.SetSpawnCommand;
+import com.skips.core.commands.SpawnCommand;
+import com.skips.core.listeners.SpawnListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
@@ -9,16 +13,29 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin implements Listener {
 
-    private final ConsoleCommandSender ccs = Bukkit.getConsoleSender();
+    public static final ConsoleCommandSender ccs = Bukkit.getConsoleSender();
+    public static Main plugin;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+
         this.ccs.sendMessage(ChatColor.GOLD +"***********************************************");
         this.ccs.sendMessage(ChatColor.GOLD + "******** " + ChatColor.WHITE + "CORE plugin up and running!" + ChatColor.GOLD + " **********");
         this.ccs.sendMessage(ChatColor.GOLD + "***********************************************");
-        Bukkit.getPluginManager().registerEvents(this, this);
-        this.getCommand("arena").setExecutor(new Arena());
+
+        this.getConfig().options().copyDefaults();
+        this.saveDefaultConfig();
+
+        this.getCommand("arena").setExecutor(new ArenaCommand());
+        this.getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
+        this.getCommand("spawn").setExecutor(new SpawnCommand(this));
+        this.getServer().getPluginManager().registerEvents(new SpawnListener(this), this);
+
+
+    }
+    public static Main getPlugin() {
+        return plugin;
     }
 
     @Override

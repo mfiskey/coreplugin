@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Arena implements CommandExecutor {
+public class ArenaCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("arena")) {
@@ -14,7 +14,7 @@ public class Arena implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + "Cannot execute command from console!");
                 return true;
             }
-            if (sender instanceof Player) {
+            else {
                 Player player = (Player) sender;
                 if (args.length == 0) {
                     player.sendMessage(ChatColor.RED + "You must specify an action: /arena <set/delete/move> <name>");
@@ -49,4 +49,5 @@ public class Arena implements CommandExecutor {
         }
         return false;
     }
+
 }

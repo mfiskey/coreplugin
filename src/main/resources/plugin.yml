@@ -7,4 +7,8 @@ description: Core plugin for the server.
 depend: [WorldEdit]
 commands:
   arena:
+    description: Allows you to set a new kit pvp arena.
   setspawn:
+    description: Allows you to set a spawn point for the server.
+  spawn:
+    description: Allows you to teleport to the set spawn point for the server.
