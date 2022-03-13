@@ -1,5 +1,4 @@
 package com.skips.core.main;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.skips.core.commands.ArenaCommand;
 import com.skips.core.commands.SetSpawnCommand;
 import com.skips.core.commands.SpawnCommand;
@@ -32,6 +31,9 @@ public final class Main extends JavaPlugin implements Listener {
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getServer().getPluginManager().registerEvents(new SpawnListener(), this);
+        this.ccs.sendMessage(ChatColor.AQUA + "WHALECUM");
+        this.ccs.sendMessage(ChatColor.AQUA + "MOO");
+
 
 
     }

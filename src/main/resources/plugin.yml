@@ -1,10 +1,10 @@
 name: Core
-version: '${project.version}'
+version: 1.0
 main: com.skips.core.main.Main
 api-version: 1.18
 authors: [ Skips, Sebastian ]
 description: Core plugin for the server.
-depend: [WorldEdit]
+#depend: [WorldEdit]
 commands:
   arena:
     description: Allows you to set a new kit pvp arena.
