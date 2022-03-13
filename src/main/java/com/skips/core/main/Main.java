@@ -31,8 +31,7 @@ public final class Main extends JavaPlugin implements Listener {
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getServer().getPluginManager().registerEvents(new SpawnListener(), this);
-        this.ccs.sendMessage(ChatColor.AQUA + "WHALECUM");
-        this.ccs.sendMessage(ChatColor.AQUA + "MOO");
+
 
 
 
