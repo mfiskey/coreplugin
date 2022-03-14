@@ -30,7 +30,7 @@ public class OnJoinLeaveListener implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        String leaveMessage = ChatColor.WHITE + "" + player.getName().toUpperCase() + " HAS LEFT";
+        String leaveMessage = ChatColor.WHITE + "" + player.getName().toUpperCase() + " HAS LEFT!";
 
         event.setQuitMessage(leaveMessage);
 

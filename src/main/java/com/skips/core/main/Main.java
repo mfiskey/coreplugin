@@ -2,6 +2,8 @@ package com.skips.core.main;
 import com.skips.core.commands.ArenaCommand;
 import com.skips.core.commands.SetSpawnCommand;
 import com.skips.core.commands.SpawnCommand;
+import com.skips.core.listeners.FoodLevelListener;
+import com.skips.core.listeners.OnBlockBreakListener;
 import com.skips.core.listeners.OnJoinLeaveListener;
 import com.skips.core.listeners.SpawnListener;
 import org.bukkit.Bukkit;
@@ -31,6 +33,10 @@ public final class Main extends JavaPlugin implements Listener {
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getServer().getPluginManager().registerEvents(new SpawnListener(), this);
         this.getServer().getPluginManager().registerEvents(new OnJoinLeaveListener(), this);
+        this.getServer().getPluginManager().registerEvents(new OnBlockBreakListener(), this);
+        this.getServer().getPluginManager().registerEvents(new FoodLevelListener(), this);
+
+
 
 
 
