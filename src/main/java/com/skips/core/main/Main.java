@@ -2,13 +2,12 @@ package com.skips.core.main;
 import com.skips.core.commands.ArenaCommand;
 import com.skips.core.commands.SetSpawnCommand;
 import com.skips.core.commands.SpawnCommand;
+import com.skips.core.listeners.OnJoinLeaveListener;
 import com.skips.core.listeners.SpawnListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.World;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin implements Listener {
@@ -31,6 +30,7 @@ public final class Main extends JavaPlugin implements Listener {
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getServer().getPluginManager().registerEvents(new SpawnListener(), this);
+        this.getServer().getPluginManager().registerEvents(new OnJoinLeaveListener(), this);
 
 
 

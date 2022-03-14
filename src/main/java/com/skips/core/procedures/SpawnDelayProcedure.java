@@ -1,16 +1,15 @@
-package com.skips.core.methods;
+package com.skips.core.procedures;
 
 import com.skips.core.data.SpawnDelayData;
 import com.skips.core.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class SpawnDelayMethod {
+public class SpawnDelayProcedure {
 
     public static HashMap<UUID, Integer> delay = new HashMap<>();
     private static int counter = 10;

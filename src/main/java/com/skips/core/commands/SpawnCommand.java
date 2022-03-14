@@ -1,7 +1,7 @@
 package com.skips.core.commands;
 
 import com.skips.core.main.Main;
-import com.skips.core.methods.SpawnDelayMethod;
+import com.skips.core.procedures.SpawnDelayProcedure;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,7 +27,7 @@ public class SpawnCommand implements CommandExecutor {
             return true;
         }
         else {
-            SpawnDelayMethod.teleport(player);
+            SpawnDelayProcedure.teleport(player);
         }
         return false;
     }

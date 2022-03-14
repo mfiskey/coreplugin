@@ -1,7 +1,7 @@
 package com.skips.core.listeners;
 
 import com.skips.core.main.Main;
-import com.skips.core.methods.SpawnDelayMethod;
+import com.skips.core.procedures.SpawnDelayProcedure;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,11 +15,9 @@ public class SpawnListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
-        if (!e.getPlayer().hasPlayedBefore()) {
-            Location location = Main.getPlugin().getConfig().getLocation("spawn");
-            if (location != null) {
-                player.teleport(location);
-            }
+        Location location = Main.getPlugin().getConfig().getLocation("spawn");
+        if (location != null) {
+            player.teleport(location);
         }
     }
 
@@ -34,7 +32,7 @@ public class SpawnListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         if (e.getFrom().getZ() != e.getTo().getZ() && e.getFrom().getX() != e.getTo().getX()) {
-            SpawnDelayMethod.cancelTeleport(e.getPlayer());
+            SpawnDelayProcedure.cancelTeleport(e.getPlayer());
         }
     }
 }
