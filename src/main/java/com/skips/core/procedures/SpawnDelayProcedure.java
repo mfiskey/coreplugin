@@ -1,5 +1,6 @@
 package com.skips.core.procedures;
 
+import com.skips.core.data.DataManager;
 import com.skips.core.data.SpawnDelayData;
 import com.skips.core.main.Main;
 import org.bukkit.Bukkit;
@@ -21,13 +22,13 @@ public class SpawnDelayProcedure {
                 if (delay.containsKey(player.getUniqueId())) {
                     delay.remove(player.getUniqueId());
                 }
-                if (Main.getPlugin().getConfig().getLocation("spawn") == null) {
+                if (Main.spawnData.getConfig("spawn.yml").getLocation("spawn") == null) {
                     player.sendMessage(ChatColor.RED + "Spawn has not been set! Contact the owner for help.");
                     Main.ccs.sendMessage(ChatColor.RED + player.getName() +
                             " tried executing /spawn, but there is no spawn set!");
                 }
                 else{
-                    player.teleport(Main.getPlugin().getConfig().getLocation("spawn"));
+                    player.teleport(Main.spawnData.getConfig("spawn.yml").getLocation("spawn"));
                 }
 
             }, (SpawnDelayData.delay * 20L));

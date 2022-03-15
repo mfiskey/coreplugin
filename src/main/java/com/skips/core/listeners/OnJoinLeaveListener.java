@@ -1,5 +1,6 @@
 package com.skips.core.listeners;
 
+import com.skips.core.procedures.KitClassProcedureTemp;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,6 +26,7 @@ public class OnJoinLeaveListener implements Listener {
         }
 
         event.setJoinMessage(joinMessage);
+        KitClassProcedureTemp.setKit(event.getPlayer());
 
     }
     @EventHandler

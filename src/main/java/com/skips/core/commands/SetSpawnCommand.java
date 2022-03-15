@@ -1,5 +1,6 @@
 package com.skips.core.commands;
 
+import com.skips.core.data.DataManager;
 import com.skips.core.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -9,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SetSpawnCommand implements CommandExecutor {
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -25,8 +27,10 @@ public class SetSpawnCommand implements CommandExecutor {
         }
         Location location = player.getLocation();
 
-        Main.getPlugin().getConfig().set("spawn", location);
-        Main.getPlugin().saveConfig();
+        Main.spawnData.getConfig("spawn.yml").set("spawn", location);
+        Main.spawnData.saveConfig("spawn.yml");
+//        Main.getPlugin().getConfig().set("spawn", location);
+//        Main.getPlugin().saveConfig();
 
         player.sendMessage(ChatColor.WHITE + "Spawn location has been set!");
         return true;
