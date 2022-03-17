@@ -12,3 +12,5 @@ commands:
     description: Allows you to set a spawn point for the server.
   spawn:
     description: Allows you to teleport to the set spawn point for the server.
+  stats:
+    description: Allows you to reset a players stats.

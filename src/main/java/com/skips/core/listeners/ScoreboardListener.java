@@ -23,7 +23,6 @@ public class ScoreboardListener implements Listener {
 
     private final DecimalFormat df = new DecimalFormat("0.0");
 
-
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -100,6 +99,22 @@ public class ScoreboardListener implements Listener {
         event.getEntity();
         Player player = event.getEntity();
 
+
+        this.killsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kills"));
+        this.deathsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".deaths"));
+        killStreakMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".killstreak"));
+        this.kdrMap.put(player.getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kdr"));
+
+        if (player.getKiller() != null) {
+            this.killsMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kills"));
+            killStreakMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".killstreak"));
+            this.deathsMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".deaths"));
+            this.kdrMap.put(player.getKiller().getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kdr"));
+
+            }
+
+
+
         // deathsScore updater
         this.deathsMap.put(player.getUniqueId(), this.deathsMap.get(player.getUniqueId()) + 1);
         Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".deaths", this.deathsMap.get(player.getUniqueId()));
@@ -143,7 +158,7 @@ public class ScoreboardListener implements Listener {
             }
             else {
                 this.kdrMap.put(player.getKiller().getUniqueId(), 0.0);
-                Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getName() + ".kdr", 0.00);
+                Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getName() + ".kdr", 0.0);
             }
             player.getKiller().getScoreboard().getTeam("kdrScore").setSuffix(ChatColor.WHITE.toString() +
                     Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kdr"));

@@ -1,6 +1,7 @@
 package com.skips.core.main;
 import com.skips.core.commands.SetSpawnCommand;
 import com.skips.core.commands.SpawnCommand;
+import com.skips.core.commands.StatsResetCommand;
 import com.skips.core.data.DataManager;
 import com.skips.core.listeners.*;
 import com.skips.core.procedures.ClearEntitiesProcedure;
@@ -37,6 +38,8 @@ public final class Main extends JavaPlugin implements Listener {
 
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
+        this.getCommand("stats").setExecutor(new StatsResetCommand());
+
         this.getServer().getPluginManager().registerEvents(new SpawnListener(), this);
         this.getServer().getPluginManager().registerEvents(new OnJoinLeaveListener(), this);
         this.getServer().getPluginManager().registerEvents(new OnBlockBreakListener(), this);
