@@ -27,13 +27,12 @@ public class ScoreboardListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPlayedBefore()) {
-            this.killsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kills"));
-            this.deathsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".deaths"));
-            this.kdrMap.put(player.getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kdr"));
-
+            this.killsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".kills"));
+            this.deathsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".deaths"));
+            this.kdrMap.put(player.getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".kdr"));
         }
-        killStreakMap.put(player.getUniqueId(), 0);
 
+        killStreakMap.put(player.getUniqueId(), 0);
         this.killsMap.putIfAbsent(player.getUniqueId(), 0);
         this.deathsMap.putIfAbsent(player.getUniqueId(), 0);
         this.kdrMap.putIfAbsent(player.getUniqueId(), 0.0);
@@ -83,12 +82,12 @@ public class ScoreboardListener implements Listener {
         kdrScore.setSuffix(ChatColor.WHITE.toString() + this.kdrMap.get(player.getUniqueId()));
         sidebar.getScore(ChatColor.YELLOW.toString()).setScore(1);
 
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName(), null);
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".UUID", player.getUniqueId().toString());
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".killstreak", killStreakMap.get(player.getUniqueId()));
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".kills", this.killsMap.get(player.getUniqueId()));
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".deaths", this.deathsMap.get(player.getUniqueId()));
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".kdr", this.kdrMap.get(player.getUniqueId()));
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId().toString(), null);
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".name", player.getName());
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".killstreak", killStreakMap.get(player.getUniqueId()));
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".kills", this.killsMap.get(player.getUniqueId()));
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".deaths", this.deathsMap.get(player.getUniqueId()));
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".kdr", this.kdrMap.get(player.getUniqueId()));
         Main.playerStatsData.saveConfig("playerStats.yml");
 
         player.setScoreboard(scoreboard);
@@ -100,16 +99,16 @@ public class ScoreboardListener implements Listener {
         Player player = event.getEntity();
 
 
-        this.killsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kills"));
-        this.deathsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".deaths"));
-        killStreakMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".killstreak"));
-        this.kdrMap.put(player.getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kdr"));
+        this.killsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".kills"));
+        this.deathsMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".deaths"));
+        killStreakMap.put(player.getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".killstreak"));
+        this.kdrMap.put(player.getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".kdr"));
 
         if (player.getKiller() != null) {
-            this.killsMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kills"));
-            killStreakMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".killstreak"));
-            this.deathsMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".deaths"));
-            this.kdrMap.put(player.getKiller().getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kdr"));
+            this.killsMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".kills"));
+            killStreakMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".killstreak"));
+            this.deathsMap.put(player.getKiller().getUniqueId(), (Integer) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".deaths"));
+            this.kdrMap.put(player.getKiller().getUniqueId(), (Double) Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".kdr"));
 
             }
 
@@ -117,16 +116,16 @@ public class ScoreboardListener implements Listener {
 
         // deathsScore updater
         this.deathsMap.put(player.getUniqueId(), this.deathsMap.get(player.getUniqueId()) + 1);
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".deaths", this.deathsMap.get(player.getUniqueId()));
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".deaths", this.deathsMap.get(player.getUniqueId()));
         player.getScoreboard().getTeam("deathsScore").setSuffix(ChatColor.WHITE.toString() +
-                Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".deaths"));
+                Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".deaths"));
 
         // killsScore updater
         if (player.getKiller() != null) {
             this.killsMap.put(player.getKiller().getUniqueId(), this.killsMap.get(player.getKiller().getUniqueId()) + 1);
-            Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getName() + ".kills", this.killsMap.get(player.getKiller().getUniqueId()));
+            Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getUniqueId() + ".kills", this.killsMap.get(player.getKiller().getUniqueId()));
             player.getKiller().getScoreboard().getTeam("killsScore").setSuffix(ChatColor.WHITE.toString() +
-                    Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kills"));
+                    Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".kills"));
 
         }
 
@@ -137,14 +136,14 @@ public class ScoreboardListener implements Listener {
             int deaths = this.deathsMap.get(player.getUniqueId());
             double kdr = ((double) kills) / deaths;
             this.kdrMap.put(player.getUniqueId(), kdr);
-            Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".kdr", Double.parseDouble(this.df.format(this.kdrMap.get(player.getUniqueId()))));
+            Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".kdr", Double.parseDouble(this.df.format(this.kdrMap.get(player.getUniqueId()))));
         }
         else {
             this.kdrMap.put(player.getUniqueId(), 0.0);
-            Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".kdr", Double.parseDouble(this.df.format(this.kdrMap.get(player.getUniqueId()))));
+            Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".kdr", Double.parseDouble(this.df.format(this.kdrMap.get(player.getUniqueId()))));
         }
         player.getScoreboard().getTeam("kdrScore").setSuffix(ChatColor.WHITE.toString() +
-                Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".kdr"));
+                Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".kdr"));
 
         // kill
         if (player.getKiller() != null) {
@@ -153,15 +152,15 @@ public class ScoreboardListener implements Listener {
                 int deaths = this.deathsMap.get(player.getKiller().getUniqueId());
                 double kdr = ((double)kills) / deaths;
                 this.kdrMap.put(player.getKiller().getUniqueId(), kdr);
-                Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getName() + ".kdr",
+                Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getUniqueId() + ".kdr",
                         Double.parseDouble(this.df.format(this.kdrMap.get(player.getKiller().getUniqueId()))));
             }
             else {
                 this.kdrMap.put(player.getKiller().getUniqueId(), 0.0);
-                Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getName() + ".kdr", 0.0);
+                Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getUniqueId()+ ".kdr", 0.0);
             }
             player.getKiller().getScoreboard().getTeam("kdrScore").setSuffix(ChatColor.WHITE.toString() +
-                    Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".kdr"));
+                    Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".kdr"));
 
         }
 
@@ -169,20 +168,20 @@ public class ScoreboardListener implements Listener {
         if (player.getKiller() != null) {
             killStreakMap.put(player.getKiller().getUniqueId(), killStreakMap.get(player.getKiller().getUniqueId()) + 1);
 
-            Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getName() + ".killstreak",
+            Main.playerStatsData.getConfig("playerStats.yml").set(player.getKiller().getUniqueId() + ".killstreak",
                     killStreakMap.get(player.getKiller().getUniqueId()));
 
             player.getKiller().getScoreboard().getTeam("killStreakScore").setSuffix(ChatColor.WHITE.toString() +
-                    Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getName() + ".killstreak"));
+                    Main.playerStatsData.getConfig("playerStats.yml").get(player.getKiller().getUniqueId() + ".killstreak"));
         }
 
         // (killed)
         killStreakMap.put(player.getUniqueId(), 0);
 
-        Main.playerStatsData.getConfig("playerStats.yml").set(player.getName() + ".killstreak", 0);
+        Main.playerStatsData.getConfig("playerStats.yml").set(player.getUniqueId() + ".killstreak", 0);
 
         player.getScoreboard().getTeam("killStreakScore").setSuffix(ChatColor.WHITE.toString() +
-                Main.playerStatsData.getConfig("playerStats.yml").get(player.getName() + ".killstreak"));
+                Main.playerStatsData.getConfig("playerStats.yml").get(player.getUniqueId() + ".killstreak"));
 
         // save data.
         Main.playerStatsData.saveConfig("playerStats.yml");

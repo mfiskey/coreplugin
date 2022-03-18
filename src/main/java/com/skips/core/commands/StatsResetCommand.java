@@ -1,7 +1,9 @@
 package com.skips.core.commands;
 
 import com.skips.core.main.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,6 +20,7 @@ public class StatsResetCommand implements CommandExecutor {
             }
         }
         Player player = (Player) sender;
+
         if (player.isOp()) {
             if (args.length == 0 || !args[0].equalsIgnoreCase("reset")) {
                 player.sendMessage(ChatColor.RED + "Please use /stats <reset> <username>");
@@ -27,37 +30,48 @@ public class StatsResetCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "Please use /stats <reset> <username>");
                 return true;
             }
-            if (!Main.playerStatsData.getConfig("playerStats.yml").contains(args[1])) {
+            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[1]).getUniqueId());
+            if (Main.getPlugin().getServer().getPlayer(args[1]) == null && !Main.playerStatsData.getConfig("playerStats.yml").contains(offlinePlayer.getUniqueId().toString())) {
                 player.sendMessage(ChatColor.RED + "Designated player has NOT played before!");
                 return true;
             }
             else {
                 FileConfiguration pSD = Main.playerStatsData.getConfig("playerStats.yml");
-                Player playerToChange = Main.getPlugin().getServer().getPlayer(args[1]);
+                if (Main.getPlugin().getServer().getPlayer(args[1]) != null) {
+                    Player playerToChange = Main.getPlugin().getServer().getPlayer(args[1]);
+                    pSD.set(playerToChange.getUniqueId() + ".kills", 0);
+                    pSD.set(playerToChange.getUniqueId() + ".deaths", 0);
+                    pSD.set(playerToChange.getUniqueId() + ".killstreak", 0);
+                    pSD.set(playerToChange.getUniqueId() + ".kdr", 0.0);
+                    Main.playerStatsData.saveConfig("playerStats.yml");
 
-                pSD.set(playerToChange.getName() + ".kills", 0);
-                pSD.set(playerToChange.getName() + ".deaths", 0);
-                pSD.set(playerToChange.getName() + ".killstreak", 0);
-                pSD.set(playerToChange.getName() + ".kdr", 0.0);
+                    playerToChange.getScoreboard().getTeam("killsScore").setSuffix(ChatColor.WHITE.toString() +
+                            Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getUniqueId() + ".kills"));
 
-                Main.playerStatsData.saveConfig("playerStats.yml");
+                    playerToChange.getScoreboard().getTeam("deathsScore").setSuffix(ChatColor.WHITE.toString() +
+                            Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getUniqueId() + ".deaths"));
 
-                playerToChange.getScoreboard().getTeam("killsScore").setSuffix(ChatColor.WHITE.toString() +
-                        Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getName() + ".kills"));
+                    playerToChange.getScoreboard().getTeam("killStreakScore").setSuffix(ChatColor.WHITE.toString() +
+                            Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getUniqueId() + ".killstreak"));
 
-                playerToChange.getScoreboard().getTeam("deathsScore").setSuffix(ChatColor.WHITE.toString() +
-                        Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getName() + ".deaths"));
+                    playerToChange.getScoreboard().getTeam("kdrScore").setSuffix(ChatColor.WHITE.toString() +
+                            Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getUniqueId() + ".kdr"));
 
-                playerToChange.getScoreboard().getTeam("killStreakScore").setSuffix(ChatColor.WHITE.toString() +
-                        Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getName() + ".killstreak"));
-
-                playerToChange.getScoreboard().getTeam("kdrScore").setSuffix(ChatColor.WHITE.toString() +
-                        Main.playerStatsData.getConfig("playerStats.yml").get(playerToChange.getName() + ".kdr"));
-
+                }
+                else {
+                    OfflinePlayer playerToChange = Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[1]).getUniqueId());
+                    pSD.set(playerToChange.getUniqueId() + ".kills", 0);
+                    pSD.set(playerToChange.getUniqueId() + ".deaths", 0);
+                    pSD.set(playerToChange.getUniqueId() + ".killstreak", 0);
+                    pSD.set(playerToChange.getUniqueId() + ".kdr", 0.0);
+                    Main.playerStatsData.saveConfig("playerStats.yml");
+                }
                 player.sendMessage(ChatColor.WHITE + "Reset the stats of " + ChatColor.GOLD + args[1].toLowerCase() + ChatColor.WHITE + ".");
+                return true;
             }
-
-
+        }
+        else {
+            player.sendMessage(ChatColor.RED + "You do not have permission to execute this command!");
         }
         return true;
     }
