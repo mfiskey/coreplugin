@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class ScoreboardListener implements Listener {
+public class SideBarListener implements Listener {
 
     private final HashMap<UUID, Double> kdrMap = new HashMap<>();
     private final HashMap<UUID, Integer> killsMap = new HashMap<>();

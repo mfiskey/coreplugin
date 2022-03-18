@@ -45,9 +45,11 @@ public final class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new OnBlockBreakListener(), this);
         this.getServer().getPluginManager().registerEvents(new FoodLevelListener(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerItemDropPickupListener(), this);
-        this.getServer().getPluginManager().registerEvents(new ScoreboardListener(), this);
+        this.getServer().getPluginManager().registerEvents(new SideBarListener(), this);
         this.getServer().getPluginManager().registerEvents(new ArenaSpawnListener(), this);
         this.getServer().getPluginManager().registerEvents(new OnChatListener(), this);
+        this.getServer().getPluginManager().registerEvents(new OnDeathListener(), this);
+
 
 
         SetArenaSpawnProcedure.setArenaSpawn();
