@@ -12,7 +12,9 @@ public class OnDeathListener implements Listener {
         Player player = event.getEntity();
         if (player.getKiller() != null) {
             Player killer = event.getEntity().getKiller();
-            killer.setHealth(killer.getHealth() + 4);
+            assert killer != null;
+            if (killer.getHealth() <= (float)16.0) killer.setHealth(killer.getHealth() + (float)4.0);
+            else killer.setHealth((float)20.0);
         }
     }
 }

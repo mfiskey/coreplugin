@@ -4,6 +4,7 @@ import com.skips.core.commands.SpawnCommand;
 import com.skips.core.commands.StatsResetCommand;
 import com.skips.core.data.DataManager;
 import com.skips.core.listeners.*;
+import com.skips.core.procedures.ArrowRechargeProcedure;
 import com.skips.core.procedures.ClearEntitiesProcedure;
 import com.skips.core.procedures.SetArenaSpawnProcedure;
 import org.bukkit.Bukkit;
@@ -49,11 +50,10 @@ public final class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new ArenaSpawnListener(), this);
         this.getServer().getPluginManager().registerEvents(new OnChatListener(), this);
         this.getServer().getPluginManager().registerEvents(new OnDeathListener(), this);
-
-
+        this.getServer().getPluginManager().registerEvents(new OnShootListener(), this);
+        this.getServer().getPluginManager().registerEvents(new OnDamageListener(), this);
 
         SetArenaSpawnProcedure.setArenaSpawn();
-
         ClearEntitiesProcedure.clearAllEntities();
     }
 

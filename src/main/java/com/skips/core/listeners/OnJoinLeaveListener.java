@@ -1,6 +1,7 @@
 package com.skips.core.listeners;
 
 import com.skips.core.main.Main;
+import com.skips.core.procedures.ArrowRechargeProcedure;
 import com.skips.core.procedures.KitClassProcedureTemp;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,6 +21,7 @@ public class OnJoinLeaveListener implements Listener {
         Player player = event.getPlayer();
         String mainTitle = ChatColor.GOLD + "" + ChatColor.BOLD + "KIT PVP";
 
+        player.setExp(0);
         player.sendTitle(mainTitle,null,40,60,10);
 
         if (!player.hasPlayedBefore()) {
@@ -53,7 +55,6 @@ public class OnJoinLeaveListener implements Listener {
     public void onPlayerLeave(PlayerQuitEvent event){
         Player player = event.getPlayer();
         String leaveMessage = ChatColor.WHITE + "" + player.getName().toUpperCase() + " HAS LEFT!";
-
         event.setQuitMessage(leaveMessage);
     }
 }
